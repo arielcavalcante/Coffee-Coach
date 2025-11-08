@@ -2,6 +2,7 @@
   export let name;
   export let waterAmount;
   export let coffeeAmount;
+  export let cupsAmount;
   export let waterAsMultipleOfCoffee;
   export let currentCalculator;
   export let grindSize;
@@ -46,6 +47,7 @@
   <Ingredients
     {waterAmount}
     {coffeeAmount}
+    {cupsAmount}
     {waterAsMultipleOfCoffee}
     {currentCalculator} />
 </section>

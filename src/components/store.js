@@ -39,6 +39,17 @@ let frenchPress = {
   currentCalculator: writable("frenchPressCurrentCalculator", "coffeeFirst"),
 };
 
+// Moka Pot
+let mokaPot = {
+  // This is equivalent to 30g coffee to 300g water (300 ÷ 30: 10)
+  cupsAmount: writable("mokaPotCupsAmount", 3),
+  waterAsMultipleOfCoffee: readable("mokaPotWaterAsMultipleOfCoffee", 10),
+  waterAmount: writable("mokaPotWaterAmount", 300),
+  coffeeAmount: writable("mokaPotCoffeeAmount", 30),
+  grindSize: writable("mokaPotGrindSize", ""),
+  currentCalculator: writable("mokaPotCurrentCalculator", "cupsFirst"),
+};
+
 // Pourover Scott Rao
 let pouroverScottRao = {
   // This is equivalent to 20g coffee to 340g water (340 ÷ 20: 17)
@@ -69,4 +80,4 @@ let v60 = {
   currentCalculator: writable("v60CurrentCalculator", "coffeeFirst"),
 };
 
-export { aeropress, clever, frenchPress, pouroverScottRao, v60 };
+export { aeropress, clever, frenchPress, mokaPot, pouroverScottRao, v60 };

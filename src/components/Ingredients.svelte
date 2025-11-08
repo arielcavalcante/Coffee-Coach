@@ -1,6 +1,7 @@
 <script>
   export let waterAmount;
   export let coffeeAmount;
+  export let cupsAmount;
   export let waterAsMultipleOfCoffee;
   export let currentCalculator;
 
@@ -16,6 +17,7 @@
 
   let firstIngredientAmount;
   let secondIngredientAmount;
+  let thirdIngredientAmount;
 
   $: {
     if ($currentCalculator === "coffeeFirst") {
@@ -33,6 +35,18 @@
 
       waterAmount.set(firstIngredientAmount);
       coffeeAmount.set(secondIngredientAmount);
+    } 
+    // A third option just for the moka pot
+     else if ($currentCalculator === "cupsFirst") {
+      firstIngredientAmount = $cupsAmount;
+      secondIngredientAmount =
+        (Math.round(firstIngredientAmount * $waterAsMultipleOfCoffee));
+      thirdIngredientAmount =
+        (Math.round(firstIngredientAmount * $waterAsMultipleOfCoffee) * 10);
+
+      cupsAmount.set(firstIngredientAmount);
+      coffeeAmount.set(secondIngredientAmount);
+      waterAmount.set(thirdIngredientAmount);
     }
   }
 
@@ -96,5 +110,32 @@
     <Button id="startWithCoffee" clickAction={toggleCalculator}>
       Start with coffee ⟳
     </Button>
+  </section>
+  <!-- A third option just for the moka pot -->
+{:else if $currentCalculator === 'cupsFirst'}
+  <section id="{$currentCalculator}Calculator" in:blur={{ delay: 100 }}>
+    <label for="cupsAmount">
+      How many
+      <strong>cups of coffee</strong>
+      does your moka make?
+    </label>
+    <input
+      type="number"
+      inputmode="decimal"
+      name="cupsAmount"
+      id="cupsAmount"
+      min="0"
+      bind:value={$cupsAmount} />
+    <p>
+      Use
+      <strong>{#if Number.isNaN($cupsAmount)}
+          0g
+        {:else}{secondIngredientAmount}g{/if}</strong>
+      of coffee grounds and 
+      <strong>{#if Number.isNaN($waterAmount)}
+          0g
+        {:else}{thirdIngredientAmount}g{/if}</strong>
+      of boiling water.
+    </p>
   </section>
 {/if}

@@ -8,6 +8,10 @@ const pages = [
     slug: "french-press-by-james-hoffman",
   },
   {
+    title: "Moka Pot by James Hoffman",
+    slug: "moka-pot-by-james-hoffman",
+  },
+  {
     title: "Pourover by Scott Rao",
     slug: "pourover-by-scott-rao",
   },
